@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <div th:replace="partials/master :: spectra" />
+</head>
+<body>
+        <nav th:include="partials/master :: navbar" />
+
+    <h1>What am I gonna roll ?</h1>
+
+    <ul>
+        <li><a th:href='${"/roll-dice/1"}' th:text='${"1"}'></a></li>
+        <li><a th:href='${"/roll-dice/2"}' th:text='${"2"}'></a></li>
+        <li><a th:href='${"/roll-dice/3"}' th:text='${"3"}'></a></li>
+        <li><a th:href='${"/roll-dice/4"}' th:text='${"4"}'></a></li>
+        <li><a th:href='${"/roll-dice/5"}' th:text='${"5"}'></a></li>
+        <li><a th:href='${"/roll-dice/6"}' th:text='${"6"}'></a></li>
+    </ul>
+
+</body>
+</html>
