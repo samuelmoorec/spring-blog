@@ -7,10 +7,10 @@
 <body>
 <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
     Title:
-    <input th:field="*{title}" />
+    <input th:field="*{title}" th:utext="*{getTitle()}" />
     <br />
     Body:
-    <input th:field="*{body}" />
+    <textarea th:utext="*{getBody()}" th:field="*{body}" />
     <br />
     <input type="submit" />
 </form>

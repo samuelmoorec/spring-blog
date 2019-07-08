@@ -2,9 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>Thyme Test</title>
+    <title>Title</title>
 </head>
 <body>
-    <h1 th:text='${"Hello bb"}'></h1>
+<h1 th:text="${user.username}"></h1>
+<p th:text="${user.email}"></p>
+
 </body>
 </html>

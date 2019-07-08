@@ -1,4 +1,4 @@
-package com.codeup.springblog;
+package com.codeup.springblog.Beans;
 
 import javax.persistence.*;
 

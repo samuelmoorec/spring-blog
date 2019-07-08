@@ -1,6 +1,7 @@
-package com.codeup.springblog;
-
+package com.codeup.springblog.Beans;
+import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -21,16 +22,29 @@ public class User {
     private Long id;
 
     @Column(nullable = false, unique = true)
+    @Size(min = 5, message = "Username must be at least 5 characters long.")
+    @NotBlank( message = "Username cannot be black")
     private String username;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
+    @NotBlank( message = "E-mail cannot be blank.")
     private String email;
 
     @Column(nullable = false)
+    @NotBlank( message = "Password cannot be blank")
+    @Size(min = 6, message = "Password must be at least 6 characters long.")
     private String password;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
     private List<Post> posts;
+
+
+    public User(User copy) {
+        id = copy.id;
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+    }
 
     public Long getId() {
         return id;

@@ -10,6 +10,8 @@
         <div th:each="post : ${posts}">
             <h2 th:text="${post.title}"></h2>
             <p th:text="${post.body}"></p>
+            <p th:text="${'Author: '}"></p>
+            <a th:href="${'/user/'+post.author.id}" th:text="${post.author.username}"></a>
     </div>
 
 </body>

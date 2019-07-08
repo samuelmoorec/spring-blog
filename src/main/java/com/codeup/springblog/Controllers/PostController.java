@@ -1,7 +1,11 @@
-package com.codeup.springblog;
+package com.codeup.springblog.Controllers;
 
+import com.codeup.springblog.Beans.User;
+import com.codeup.springblog.EmailService;
+import com.codeup.springblog.Beans.Post;
 import com.codeup.springblog.Repositories.PostRepository;
 import com.codeup.springblog.Repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -36,14 +40,7 @@ public class PostController {
 //        }
 
     @RequestMapping(value = "/posts/{id}", method = RequestMethod.GET)
-
     public String PostId(@PathVariable int id, ArrayList<Post> posts, Model model){
-
-//        posts.add(new Post("lol", "I hate good coffee"));
-//        posts.add(new Post("coffee", "Coffeee is the besssst"));
-//        posts.add(new Post("Candy is good", "Your not yourself without a snickers"));
-//        User bob = new User("Bob234","bobiscool@gmail.com","pass", posts);
-
         model.addAttribute("posts", posts.get(id));
         return "posts/index";
     }
@@ -69,7 +66,8 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String Insert(@ModelAttribute Post newPost) {
-        newPost.setAuthor(userDao.findOne(1L));
+         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        newPost.setAuthor(userDao.findOne(user.getId()));
         postDao.save(newPost);
         emailService.prepareAndSend(newPost,"NEW POST","A new post was created with this email");
         return "redirect:/posts";
