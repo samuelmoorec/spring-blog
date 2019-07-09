@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8" />
     <title>Title</title>
-<!--    <div th:include="partials/master :: spectra" />-->
+    <div th:include="partials/master :: spectra" />
 </head>
 <body>
-<h1>Blog Posts</h1>
-<!--    <nav th:include="partials/master :: navbar" />-->
+    <nav th:include="partials/master :: navbar" />
         <div th:each="post : ${posts}">
             <h2 th:text="${post.title}"></h2>
             <p th:text="${post.body}"></p>
-            <p>Author - </p>
+            <p th:text="${'Author: '}"></p>
             <a th:href="${'/user/'+post.author.id}" th:text="${post.author.username}"></a>
     </div>
 
