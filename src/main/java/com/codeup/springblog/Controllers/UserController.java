@@ -30,13 +30,13 @@ public class UserController {
     @GetMapping("/user/create")
     public String showSignupForm(Model model){
         model.addAttribute("user", new User());
-        return "/users/create";
+        return "users/create";
     }
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public String PostId(@PathVariable long id, Model model){
         model.addAttribute("user", userDao.findOne(id));
-        return "/users/index";
+        return "users/index";
     }
 
     @PostMapping("/users/create")
@@ -46,7 +46,7 @@ public class UserController {
         if (validation.hasErrors()) {
             model.addAttribute("errors", validation);
             model.addAttribute("user", user);
-            return "/users/create";
+            return "users/create";
         }
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
